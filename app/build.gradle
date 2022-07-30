@@ -69,6 +69,7 @@ dependencies {
     api roomLib
     kapt roomCompiler
     implementation roomRxJavaLib
+    implementation reactiveStreamsLibs
 
     //RxJava
     implementation rxAndroidLib

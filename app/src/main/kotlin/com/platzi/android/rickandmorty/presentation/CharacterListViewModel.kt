@@ -3,7 +3,11 @@ package com.platzi.android.rickandmorty.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.platzi.android.rickandmorty.api.*
+import com.platzi.android.rickandmorty.api.CharacterRequest
+import com.platzi.android.rickandmorty.api.CharacterService
+import com.platzi.android.rickandmorty.api.CharacterResponseServer
+import com.platzi.android.rickandmorty.api.CharacterServer
+import com.platzi.android.rickandmorty.api.toCharacterServerList
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

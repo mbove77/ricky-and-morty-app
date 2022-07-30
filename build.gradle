@@ -91,7 +91,7 @@ ext{
     okHttpInterceptorLib = "com.squareup.okhttp3:logging-interceptor:$okHttpLoggingInterceptorVersion"
 
     //Reactive Streams
-    reactiveStreamsLib = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$reactiveStreamsVersion"
+    reactiveStreamsLibs = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$reactiveStreamsVersion"
 
     //Retrofit
     retrofitGsonLib = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
