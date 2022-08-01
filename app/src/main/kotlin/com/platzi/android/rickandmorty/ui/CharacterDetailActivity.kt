@@ -111,7 +111,7 @@ class CharacterDetailActivity: AppCompatActivity() {
         )
         binding.characterDataName = character.name
         binding.characterDataStatus = character.status
-        binding.characterDataSpecies = character.species
+        binding.characterDataSpecies = character!!.species
         binding.characterDataGender = character.gender
         binding.characterDataOriginName = character.origin.name
         binding.characterDataLocationName = character.location.name
