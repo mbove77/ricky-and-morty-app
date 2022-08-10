@@ -8,6 +8,7 @@ import com.platzi.android.rickandmorty.api.CharacterService
 import com.platzi.android.rickandmorty.api.CharacterResponseServer
 import com.platzi.android.rickandmorty.api.CharacterServer
 import com.platzi.android.rickandmorty.api.toCharacterServerList
+import com.platzi.android.rickandmorty.usecases.GetAllCharacterUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +17,9 @@ import io.reactivex.schedulers.Schedulers
  * Created by Martín Bove on 28/7/2022.
  * E-mail: mbove77@gmail.com
  */
-class CharacterListViewModel(private val characterRequest: CharacterRequest): ViewModel() {
+class CharacterListViewModel (
+    private val getAllCharacterUseCase: GetAllCharacterUseCase
+): ViewModel() {
 
     private val disposable = CompositeDisposable()
 
@@ -58,12 +61,7 @@ class CharacterListViewModel(private val characterRequest: CharacterRequest): Vi
 
     fun onGetAllCharacters(){
         disposable.add(
-            characterRequest
-                .getService<CharacterService>()
-                .getAllCharacters(currentPage)
-                .map(CharacterResponseServer::toCharacterServerList)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                getAllCharacterUseCase.invoke(currentPage)
                 .doOnSubscribe {
                     _events.postValue(Event(CharacterListNavigation.ShowLoading))
                 }

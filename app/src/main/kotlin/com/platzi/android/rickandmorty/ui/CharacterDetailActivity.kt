@@ -22,6 +22,9 @@ import com.platzi.android.rickandmorty.utils.getViewModel
 import com.platzi.android.rickandmorty.utils.showLongToast
 import kotlinx.android.synthetic.main.activity_character_detail.*
 import com.platzi.android.rickandmorty.presentation.CharacterDetailViewModel.CharacterDetailNavigation.*
+import com.platzi.android.rickandmorty.usecases.GetEpisodeFromCharacterUseCase
+import com.platzi.android.rickandmorty.usecases.UpdateFavoriteCharacterStatusUseCase
+import com.platzi.android.rickandmorty.usecases.ValidateFavoriteCharaterStatusUseCase
 
 class CharacterDetailActivity: AppCompatActivity() {
 
@@ -37,8 +40,9 @@ class CharacterDetailActivity: AppCompatActivity() {
         getViewModel {
             CharacterDetailViewModel(
                 intent.getParcelableExtra(Constants.EXTRA_CHARACTER) as CharacterServer,
-                characterDao,
-                episodeRequest
+                ValidateFavoriteCharaterStatusUseCase(characterDao),
+                GetEpisodeFromCharacterUseCase(episodeRequest),
+                UpdateFavoriteCharacterStatusUseCase(characterDao)
             )
         }
     }

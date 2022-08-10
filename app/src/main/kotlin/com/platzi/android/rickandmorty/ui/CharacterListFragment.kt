@@ -17,6 +17,7 @@ import com.platzi.android.rickandmorty.api.CharacterRequest
 import com.platzi.android.rickandmorty.api.CharacterServer
 import com.platzi.android.rickandmorty.databinding.FragmentCharacterListBinding
 import com.platzi.android.rickandmorty.presentation.CharacterListViewModel
+import com.platzi.android.rickandmorty.usecases.GetAllCharacterUseCase
 import com.platzi.android.rickandmorty.utils.setItemDecorationSpacing
 import com.platzi.android.rickandmorty.utils.showLongToast
 import kotlinx.android.synthetic.main.fragment_character_list.*
@@ -25,7 +26,7 @@ class CharacterListFragment : Fragment() {
 
     //region Fields
     private val viewModel: CharacterListViewModel by lazy {
-        CharacterListViewModel(characterRequest)
+        CharacterListViewModel(GetAllCharacterUseCase(characterRequest))
     }
 
     private lateinit var characterGridAdapter: CharacterGridAdapter

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.platzi.android.rickandmorty.database.CharacterDao
 import com.platzi.android.rickandmorty.database.CharacterEntity
+import com.platzi.android.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
@@ -14,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
  * E-mail: mbove77@gmail.com
  */
 class FavoriteListViewModel(
-    private val characterDao: CharacterDao
+    private val getAllFavoriteCharactersUseCase: GetAllFavoriteCharactersUseCase
 ): ViewModel() {
 
     private val disposable = CompositeDisposable()
@@ -24,10 +25,7 @@ class FavoriteListViewModel(
 
     private val _favoriteCharacterList: LiveData<List<CharacterEntity>> get() =
         LiveDataReactiveStreams.fromPublisher(
-            characterDao
-                .getAllFavoriteCharacters()
-                .onErrorReturn { emptyList() }
-                .subscribeOn(Schedulers.io())
+            getAllFavoriteCharactersUseCase.invoke()
         )
     val favoriteCharacterList: LiveData<List<CharacterEntity>> get() = _favoriteCharacterList
 

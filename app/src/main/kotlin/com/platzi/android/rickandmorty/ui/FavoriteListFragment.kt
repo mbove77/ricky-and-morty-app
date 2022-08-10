@@ -18,6 +18,7 @@ import com.platzi.android.rickandmorty.database.CharacterDatabase
 import com.platzi.android.rickandmorty.database.CharacterEntity
 import com.platzi.android.rickandmorty.databinding.FragmentFavoriteListBinding
 import com.platzi.android.rickandmorty.presentation.FavoriteListViewModel
+import com.platzi.android.rickandmorty.usecases.GetAllFavoriteCharactersUseCase
 import com.platzi.android.rickandmorty.utils.setItemDecorationSpacing
 import kotlinx.android.synthetic.main.fragment_favorite_list.*
 
@@ -29,7 +30,7 @@ class FavoriteListFragment : Fragment() {
     private lateinit var characterDao: CharacterDao
 
     private val favoriteListViewModel: FavoriteListViewModel by lazy {
-        FavoriteListViewModel(characterDao)
+        FavoriteListViewModel(GetAllFavoriteCharactersUseCase(characterDao))
     }
 
     override fun onAttach(context: Context) {
